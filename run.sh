@@ -1,6 +1,6 @@
 #!/bin/bash
 
-go run websockets/goServer.go &
+go run websockets/server.go &
 cd webserv
 npm start &
 
