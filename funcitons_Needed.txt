@@ -16,4 +16,7 @@ get total orders
 
 inster product
 
+Json Structure
+{"cmd" : "cmd", "Data" : {"SQL" : "Statment", "items" : ["Test", "Test", "Test"]}}
+
 

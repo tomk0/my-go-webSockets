@@ -10,8 +10,13 @@ import (
 )
 
 type cmdIn struct {
-	Cmd  string `json:"cmd"`
-	Data string `json:"Data"`
+	Cmd string `json:"cmd"`
+
+	Data struct {
+		SQL string `json:"SQL"`
+
+		Items []string `json:"items"`
+	} `json:"Data"`
 }
 
 func jsonPars(msg string) {
@@ -23,7 +28,9 @@ func jsonPars(msg string) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(r)
+	fmt.Println("Raw: ", r)
+	fmt.Println("Command: ", r.Cmd)
+	fmt.Println("Data: ", r.Data.Items[0])
 
 }
 
