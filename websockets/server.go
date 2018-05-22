@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -8,7 +9,25 @@ import (
 	"golang.org/x/net/websocket"
 )
 
-func Echo(ws *websocket.Conn) {
+type cmdIn struct {
+	Cmd  string `json:"cmd"`
+	Data string `json:"Data"`
+}
+
+func jsonPars(msg string) {
+
+	tmp := []byte(msg)
+	var r cmdIn
+
+	err := json.Unmarshal(tmp, &r)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(r)
+
+}
+
+func frmClient(ws *websocket.Conn) {
 	var err error
 
 	for {
@@ -21,6 +40,8 @@ func Echo(ws *websocket.Conn) {
 
 		fmt.Println("Received back from client: " + reply)
 
+		jsonPars(reply)
+
 		msg := "Received:  " + reply
 		fmt.Println("Sending to client: " + msg)
 
@@ -32,7 +53,7 @@ func Echo(ws *websocket.Conn) {
 }
 
 func main() {
-	http.Handle("/", websocket.Handler(Echo))
+	http.Handle("/", websocket.Handler(frmClient))
 
 	if err := http.ListenAndServe(":1234", nil); err != nil {
 		log.Fatal("ListenAndServe:", err)
