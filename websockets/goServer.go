@@ -2,8 +2,6 @@ package main
 
 import (
 
-    "./libs/structs"
-    "./libs/db"
     "golang.org/x/net/websocket"
     "fmt"
     "log"
@@ -50,8 +48,8 @@ func router(ws *websocket.Conn) {
         //handeling the command
         switch  decode.Command {
         case "GetDrinks":
-            MyDBStuff.GetDrinks()
-        case "ping":
+		fmt.Println("Test")
+	case "ping":
             msg = "pong"
         case "Test":
             msg = "Test2You"
@@ -70,8 +68,6 @@ func router(ws *websocket.Conn) {
 }
 
 func main() {
-
-    MyDBStuff.GetDrinks()
 
     //handeling the websocket
     http.Handle("/", websocket.Handler(router))

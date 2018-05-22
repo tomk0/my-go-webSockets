@@ -2,7 +2,9 @@
 
 input="pid.term"
 
-pgrep -f xterm >> $input
+pgrep -f node >> $input
+pgrep -f npm >> $input
+pgrep -f goServer >> $input
 
 while IFS= read -r var
 do
