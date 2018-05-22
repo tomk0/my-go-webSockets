@@ -17,6 +17,19 @@ get total orders
 inster product
 
 Json Structure
-{"cmd" : "cmd", "Data" : {"SQL" : "Statment", "items" : ["Test", "Test", "Test"]}}
+{"cmd" : "ping", "Data" : {"SQL" : "Statment", "items" : [{"itmid" : 1, "filid" : 1, "Changes" : "", "Amount" : 1 }]}}
+
+type cmdIn struct {
+	Cmd  string `json:"cmd"`
+	Data struct {
+		misc   string `json:"misc"`
+		Items []struct {
+			Itmid   int    `json:"itmid"`
+			Filid   int    `json:"filid"`
+			Changes string `json:"Changes"`
+			Amount  int    `json:"Amount"`
+		} `json:"items"`
+	} `json:"Data"`
+}
 
 

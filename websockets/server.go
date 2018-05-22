@@ -9,17 +9,50 @@ import (
 	"golang.org/x/net/websocket"
 )
 
+type Items struct {
+	Itmid   int    `json:"itmid"`
+	Filid   int    `json:"filid"`
+	Changes string `json:"Changes"`
+	Amount  int    `json:"Amount"`
+}
+
 type cmdIn struct {
-	Cmd string `json:"cmd"`
-
+	Cmd  string `json:"cmd"`
 	Data struct {
-		SQL string `json:"SQL"`
-
-		Items []string `json:"items"`
+		SQL      string  `json:"SQL"`
+		ItemsAry []Items `json:"items"`
 	} `json:"Data"`
 }
 
-func jsonPars(msg string) {
+func route(data cmdIn) string {
+
+	switch data.Cmd {
+	case "ping":
+		return pong(data.Cmd)
+	case "Ping":
+		return pong(data.Cmd)
+	default:
+		return "Not a Valid input"
+
+	}
+
+}
+
+func pong(cmd string) string {
+
+	switch cmd {
+	case "ping":
+		return "pong"
+	case "Ping":
+		return "Pong"
+	default:
+		return ""
+
+	}
+
+}
+
+func jsonPars(msg string) cmdIn {
 
 	tmp := []byte(msg)
 	var r cmdIn
@@ -28,9 +61,8 @@ func jsonPars(msg string) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Raw: ", r)
-	fmt.Println("Command: ", r.Cmd)
-	fmt.Println("Data: ", r.Data.Items[0])
+
+	return r
 
 }
 
@@ -47,14 +79,21 @@ func frmClient(ws *websocket.Conn) {
 
 		fmt.Println("Received back from client: " + reply)
 
-		jsonPars(reply)
+		data := jsonPars(reply)
 
-		msg := "Received:  " + reply
-		fmt.Println("Sending to client: " + msg)
+		resp := route(data)
 
-		if err = websocket.Message.Send(ws, msg); err != nil {
-			fmt.Println("Can't send")
-			break
+		if resp == "" {
+
+		} else {
+
+			msg := resp
+			fmt.Println("Sending to client: " + msg)
+
+			if err = websocket.Message.Send(ws, msg); err != nil {
+				fmt.Println("Can't send")
+				break
+			}
 		}
 	}
 }
