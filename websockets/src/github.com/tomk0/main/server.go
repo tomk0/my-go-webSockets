@@ -25,13 +25,13 @@ type cmdIn struct {
 func menu() string{
 
 	menu := DB.GetAll()
-	Data := Data{SQL: "", ItemsAry : test}
+	Data := Data{SQL: "", ItemsAry : menu}
 	cmdOut := cmdIn{Cmd: "Test", Data: Data}
 	jsonEnc, err := json.Marshal(cmdOut) 
 	
 	misc.CheckError(err)
 
-	return jsonEnc
+	return string(jsonEnc)
 
 }
 
