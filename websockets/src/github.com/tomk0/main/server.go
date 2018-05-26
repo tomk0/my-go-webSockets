@@ -22,6 +22,19 @@ type cmdIn struct {
 	Data Data `json:"Data"`
 }
 
+func menu() string{
+
+	menu := DB.GetAll()
+	Data := Data{SQL: "", ItemsAry : test}
+	cmdOut := cmdIn{Cmd: "Test", Data: Data}
+	jsonEnc, err := json.Marshal(cmdOut) 
+	
+	misc.CheckError(err)
+
+	return jsonEnc
+
+}
+
 func route(data cmdIn) string {
 
 	switch data.Cmd {
@@ -29,6 +42,8 @@ func route(data cmdIn) string {
 		return pong(data.Cmd)
 	case "Ping":
 		return pong(data.Cmd)
+	case "getMenu":
+		return menu()
 	default:
 		return "Not a Valid input"
 
@@ -96,16 +111,6 @@ func frmClient(ws *websocket.Conn) {
 }
 
 func main() {
-
-	 test := DB.GetAll()
-	 Data := Data{SQL: "", ItemsAry : test}
-	 test2 := cmdIn{Cmd: "Test", Data: Data}
-
-	 test3, err := json.Marshal(test2) 
-
-	 misc.CheckError(err)
-
-	fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n", string(test3))
 
 	http.Handle("/", websocket.Handler(frmClient))
 
