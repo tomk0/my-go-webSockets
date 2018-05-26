@@ -101,7 +101,9 @@ func main() {
 	 Data := Data{SQL: "", ItemsAry : test}
 	 test2 := cmdIn{Cmd: "Test", Data: Data}
 
-	fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n", test2)
+	 test3, err := json.Marshal(test2) 
+
+	fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n", string(test3))
 
 	http.Handle("/", websocket.Handler(frmClient))
 
