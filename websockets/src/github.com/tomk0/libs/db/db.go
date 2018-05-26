@@ -70,7 +70,7 @@ func getAll() []menuItem{
 		err = results.Scan(&tmp.id, &tmp.name, &tmp.disc, &tmp.price, &tmp.amount, &tmp.category )
 
 		misc.CheckError(err)
-/*
+
 		fmt.Println("\n----------------------------------------------------------")
 		fmt.Println("ID: ", tmp.id)
 		fmt.Println("Name: ", tmp.name)
@@ -78,7 +78,7 @@ func getAll() []menuItem{
 		fmt.Println("Price: ", tmp.price)
 		fmt.Println("Amount: ", tmp.amount)
 		fmt.Println("Category: ", tmp.category)
-*/
+
 		if menu[0].id == ""{
 
 			menu[0] = tmp

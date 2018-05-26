@@ -100,6 +100,9 @@ func frmClient(ws *websocket.Conn) {
 }
 
 func main() {
+
+	menu := DB.getAll()
+
 	http.Handle("/", websocket.Handler(frmClient))
 
 	if err := http.ListenAndServe(":1234", nil); err != nil {
