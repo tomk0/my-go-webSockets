@@ -3,7 +3,7 @@ package db
 import (
 
 
-	"encoding/json"
+	//"encoding/json"
 	"fmt"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
@@ -85,6 +85,6 @@ func GetAll() []menuItem{
 	}
 
 
-	return string(j)
+	return menu
 }
 
