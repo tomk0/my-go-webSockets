@@ -67,12 +67,12 @@ func GetAll() string{
 		fmt.Println("\n----------------------------------------------------------")
 		fmt.Println("ID: ", tmp.Id)
 		fmt.Println("Name: ", tmp.Name)
-		fmt.Println("Description: ", mp.Disc)
+		fmt.Println("Description: ", tmp.Disc)
 		fmt.Println("Price: ", tmp.Price)
 		fmt.Println("Amount: ", tmp.Amount)
 		fmt.Println("Category: ", tmp.Category)
 
-		if menu[0].id == ""{
+		if menu[0].Id == ""{
 
 			menu[0] = tmp
 
