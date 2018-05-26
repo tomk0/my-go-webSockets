@@ -23,12 +23,6 @@ type menuItem struct {
 
 }
 
-type Menu struct {
-
-
-	menu []menuItem `json:"menu"`
-
-}
 
 func Test(){
 
@@ -48,10 +42,10 @@ func Test(){
 
 }
 
-func GetAll() Menu{
+func GetAll() string{
 
-	var menu Menu
-	menuTmp := make([]menuItem, 1)
+
+	menu := make([]menuItem, 1)
 
 	db, err := sql.Open("mysql", "tom:pwd123@tcp(127.0.0.1:3306)/cafe_POS_v3")
 
@@ -79,20 +73,20 @@ func GetAll() Menu{
 		fmt.Println("Amount: ", tmp.amount)
 		fmt.Println("Category: ", tmp.category)
 
-		if menuTmp[0].id == ""{
+		if menu[0].id == ""{
 
-			menuTmp[0] = tmp
+			menu[0] = tmp
 
 		}else{
 
-			menuTmp = append(menu, tmp)
+			menu = append(menu, tmp)
 
 		}
 
 	}
-	
-		menu = menuTmp
-		
-	return menu
+
+	j, err = jsonMarshel(menu)
+
+	return string(j)
 }
 
