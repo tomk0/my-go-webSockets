@@ -11,7 +11,7 @@ import (
 
 )
 
-type menuItem struct {
+type MenuItem struct {
 
 	Id string `json:"Id"`
 	Name string `json:"Name"`

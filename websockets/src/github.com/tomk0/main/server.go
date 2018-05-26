@@ -13,7 +13,7 @@ import (
 type Data struct {
 
 	SQL      string  `json:"SQL"`
-	ItemsAry []DB.menuItem `json:"Items"`
+	ItemsAry []DB.MenuItem `json:"Items"`
 
 }
 
