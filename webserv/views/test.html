@@ -21,7 +21,7 @@
 
             sock.onmessage = function(e) {
                 var object = JSON.parse(e.data)
-                console.log("message received: " + object);
+                console.log("message received: " + JSON.stringify(object));
             }
         };
 
