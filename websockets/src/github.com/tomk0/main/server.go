@@ -103,6 +103,8 @@ func main() {
 
 	 test3, err := json.Marshal(test2) 
 
+	 misc.CheckError(err)
+
 	fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n", string(test3))
 
 	http.Handle("/", websocket.Handler(frmClient))
