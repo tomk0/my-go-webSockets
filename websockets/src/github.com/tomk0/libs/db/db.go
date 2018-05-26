@@ -34,7 +34,7 @@ func main(){
 
 	var menu Menu 
 
-	menu.menu = getAll()
+	menu.menu = GetAll()
 	b, err := json.Marshal(menu.menu[0])
 
 	if err != nil{
