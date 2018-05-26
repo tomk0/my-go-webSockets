@@ -41,10 +41,10 @@ func Test(){
 }
 */
 
-func GetAll() []menuItem{
+func GetAll() []MenuItem{
 
 
-	menu := make([]menuItem, 1)
+	menu := make([]MenuItem, 1)
 
 	db, err := sql.Open("mysql", "tom:pwd123@tcp(127.0.0.1:3306)/cafe_POS_v3")
 
@@ -58,7 +58,7 @@ func GetAll() []menuItem{
 
 	for results.Next(){
 
-		var tmp menuItem
+		var tmp MenuItem
 
 		err = results.Scan(&tmp.Id, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category )
 
