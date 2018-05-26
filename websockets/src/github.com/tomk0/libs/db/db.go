@@ -48,7 +48,7 @@ func main(){
 
 }
 
-func getAll() []menuItem{
+func GetAll() []menuItem{
 
 
 	menu := make([]menuItem, 1)
