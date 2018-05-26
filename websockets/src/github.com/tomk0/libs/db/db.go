@@ -23,7 +23,7 @@ type menuItem struct {
 
 }
 
-
+/*
 func Test(){
 
 	//menu.menu = GetAll()
@@ -39,6 +39,7 @@ func Test(){
 
 
 }
+*/
 
 func GetAll() string{
 
@@ -83,7 +84,7 @@ func GetAll() string{
 
 	}
 
-	j, err := json.Marshel(menu)
+	j, err := json.Marshal(menu)
 
 	return string(j)
 }
