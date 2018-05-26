@@ -101,7 +101,9 @@ func frmClient(ws *websocket.Conn) {
 
 func main() {
 
-	DB.GetAll()
+	 test := DB.GetAll()
+
+	fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n", test)
 
 	http.Handle("/", websocket.Handler(frmClient))
 
