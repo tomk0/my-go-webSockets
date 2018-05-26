@@ -1,0 +1,1 @@
+ GRANT ALL PRIVILEGES ON *.* TO 'tom'@'localhost' IDENTIFIED BY 'pwd123';
