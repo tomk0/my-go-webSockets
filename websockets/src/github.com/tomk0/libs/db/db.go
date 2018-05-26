@@ -84,7 +84,14 @@ func GetAll() string{
 
 	}
 
-	j, err := json.Marshal(menu)
+	test = make([]menuItem, len(menu))
+	for i, tmp := range menu{
+
+		test[i] = menuItem{id: tmp.id, name: tmp.name, disc: tmp.disc, price: tmp.price, amount, tmp.amount, category, tmp.category}
+
+	}
+
+	j, err := json.Marshal(test)
 
 	return string(j)
 }
