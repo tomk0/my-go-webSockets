@@ -101,7 +101,7 @@ func frmClient(ws *websocket.Conn) {
 
 func main() {
 
-	menu := DB.GetAll()
+	DB.GetAll()
 
 	http.Handle("/", websocket.Handler(frmClient))
 

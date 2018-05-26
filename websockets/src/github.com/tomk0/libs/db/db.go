@@ -30,7 +30,7 @@ type Menu struct {
 
 }
 
-func main(){
+func Test(){
 
 	var menu Menu 
 
@@ -48,10 +48,10 @@ func main(){
 
 }
 
-func GetAll() []menuItem{
+func GetAll() Menu{
 
-
-	menu := make([]menuItem, 1)
+	var menu Menu
+	menuTmp := make([]menuItem, 1)
 
 	db, err := sql.Open("mysql", "tom:pwd123@tcp(127.0.0.1:3306)/cafe_POS_v3")
 
@@ -79,18 +79,20 @@ func GetAll() []menuItem{
 		fmt.Println("Amount: ", tmp.amount)
 		fmt.Println("Category: ", tmp.category)
 
-		if menu[0].id == ""{
+		if menuTmp[0].id == ""{
 
-			menu[0] = tmp
+			menuTmp[0] = tmp
 
 		}else{
 
-			menu = append(menu, tmp)
+			menuTmp = append(menu, tmp)
 
 		}
 
 	}
-
+	
+		menu = menuTmp
+		
 	return menu
 }
 
