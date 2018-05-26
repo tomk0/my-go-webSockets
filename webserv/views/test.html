@@ -20,7 +20,8 @@
             }
 
             sock.onmessage = function(e) {
-                console.log("message received: " + e.data);
+                var object = JSON.parse(e.data)
+                console.log("message received: " + object);
             }
         };
 
