@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
+	misc "github.com/tomk0/libs/misc"
 
 )
 
@@ -54,22 +55,13 @@ func getAll() []menuItem{
 
 	db, err := sql.Open("mysql", "tom:pwd123@tcp(127.0.0.1:3306)/cafe_POS_v3")
 
-	if err != nil {
+	misc.CheckError(err)
 
-		panic(err.Error())
-
-	}
 	defer db.Close()
 
 	results , err := db.Query("SELECT ITM.*, CAT.CAT_TYPE FROM ITEMS AS ITM JOIN ITEM_CATEGORY AS IC ON ITM.ITM_ID = IC.IC_ITM_ID JOIN CATEGORY AS CAT ON IC.IC_CAT_ID = CAT.CAT_ID WHERE ITM.ITM_AMOUNT > 0;")
 
-	if err != nil {
-
-		panic(err.Error())
-
-	}
-
-
+	misc.CheckError(err)
 
 	for results.Next(){
 
@@ -77,11 +69,7 @@ func getAll() []menuItem{
 
 		err = results.Scan(&tmp.id, &tmp.name, &tmp.disc, &tmp.price, &tmp.amount, &tmp.category )
 
-		if err != nil{
-
-			panic(err.Error())
-
-		}
+		misc.CheckError(err)
 /*
 		fmt.Println("\n----------------------------------------------------------")
 		fmt.Println("ID: ", tmp.id)

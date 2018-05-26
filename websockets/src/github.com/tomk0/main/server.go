@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	misc "github.com/tomk0/libs/misc"
 	DB "github.com/tomk0/libs/db"
 	"golang.org/x/net/websocket"
 )
@@ -59,9 +60,8 @@ func jsonPars(msg string) cmdIn {
 	var r cmdIn
 
 	err := json.Unmarshal(tmp, &r)
-	if err != nil {
-		panic(err)
-	}
+
+	misc.CheckError(err)
 
 	return r
 
