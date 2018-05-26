@@ -13,12 +13,12 @@ import (
 
 type menuItem struct {
 
-	id string `json:"id"`
-	name string `json:"name"`
-	disc string `json:"disc"`
-	price float64 `json:"price"`
-	amount int `json:"amount"`
-	category string `json:"category"`
+	Id string `json:"Id"`
+	Name string `json:"Name"`
+	Disc string `json:"Disc"`
+	Price float64 `json:"Price"`
+	Amount int `json:"Amount"`
+	Category string `json:"Category"`
 
 
 }
@@ -60,17 +60,17 @@ func GetAll() string{
 
 		var tmp menuItem
 
-		err = results.Scan(&tmp.id, &tmp.name, &tmp.disc, &tmp.price, &tmp.amount, &tmp.category )
+		err = results.Scan(&tmp.Id, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category )
 
 		misc.CheckError(err)
 
 		fmt.Println("\n----------------------------------------------------------")
-		fmt.Println("ID: ", tmp.id)
-		fmt.Println("Name: ", tmp.name)
-		fmt.Println("Description: ", tmp.disc)
-		fmt.Println("Price: ", tmp.price)
-		fmt.Println("Amount: ", tmp.amount)
-		fmt.Println("Category: ", tmp.category)
+		fmt.Println("ID: ", tmp.Id)
+		fmt.Println("Name: ", tmp.Name)
+		fmt.Println("Description: ", mp.Disc)
+		fmt.Println("Price: ", tmp.Price)
+		fmt.Println("Amount: ", tmp.Amount)
+		fmt.Println("Category: ", tmp.Category)
 
 		if menu[0].id == ""{
 
@@ -84,14 +84,7 @@ func GetAll() string{
 
 	}
 
-	test := make([]menuItem, len(menu))
-	for i, tmp := range menu{
-
-		test[i] = menuItem{id: tmp.id, name: tmp.name, disc: tmp.disc, price: tmp.price, amount: tmp.amount, category: tmp.category}
-
-	}
-
-	j, err := json.Marshal(test)
+	j, err := json.Marshal(menu)
 
 	return string(j)
 }
