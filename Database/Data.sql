@@ -1,4 +1,4 @@
-USE Cafe_POS_V2;
+USE cafe_POS_v3;
 
 SET FOREIGN_KEY_CHECKS = 0; 
 

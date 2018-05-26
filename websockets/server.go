@@ -14,6 +14,7 @@ type Items struct {
 	Filid   int    `json:"filid"`
 	Changes string `json:"Changes"`
 	Amount  int    `json:"Amount"`
+	Category string `json:"Category"`
 }
 
 type cmdIn struct {
