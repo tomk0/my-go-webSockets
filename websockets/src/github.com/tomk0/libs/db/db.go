@@ -41,7 +41,7 @@ func Test(){
 }
 */
 
-func GetAll() string{
+func GetAll() []menuItem{
 
 
 	menu := make([]menuItem, 1)
@@ -84,7 +84,6 @@ func GetAll() string{
 
 	}
 
-	j, err := json.Marshal(menu)
 
 	return string(j)
 }

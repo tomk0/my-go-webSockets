@@ -10,20 +10,16 @@ import (
 	"golang.org/x/net/websocket"
 )
 
-type Items struct {
-	Itmid   int    `json:"itmid"`
-	Filid   int    `json:"filid"`
-	Changes string `json:"Changes"`
-	Amount  int    `json:"Amount"`
-	Category string `json:"Category"`
+type Data struct {
+
+	SQL      string  `json:"SQL"`
+	ItemsAry []DB.menuItem `json:"Items"`
+
 }
 
 type cmdIn struct {
-	Cmd  string `json:"cmd"`
-	Data struct {
-		SQL      string  `json:"SQL"`
-		ItemsAry []Items `json:"items"`
-	} `json:"Data"`
+	Cmd  string `json:"Cmd"`
+	Data Data `json:"Data"`
 }
 
 func route(data cmdIn) string {
@@ -102,6 +98,8 @@ func frmClient(ws *websocket.Conn) {
 func main() {
 
 	 test := DB.GetAll()
+	 Data := Data{SQL: "", ItemsAry : test}
+	 test2 := cmdIn{Cmd: "Test", Data: Data}
 
 	fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n", test)
 
