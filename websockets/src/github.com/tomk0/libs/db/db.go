@@ -29,10 +29,10 @@ func Test(){
 }
 */
 
-// GetAll Is the unction to Get the whole Menu
-func GetAll() []stuc.MenuItem {
+// GetAll Is the function to Get the whole Menu
+func GetAll() []stuc.MenuItemOut {
 
-	menu := make([]stuc.MenuItem, 1)
+	menu := make([]stuc.MenuItemOut, 1)
 
 	db, err := sql.Open("mysql", "tom:pwd123@tcp(127.0.0.1:3306)/cafe_POS_v3")
 
@@ -46,7 +46,7 @@ func GetAll() []stuc.MenuItem {
 
 	for results.Next() {
 
-		var tmp stuc.MenuItem
+		var tmp stuc.MenuItemOut
 
 		err = results.Scan(&tmp.ID, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category)
 
