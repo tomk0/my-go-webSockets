@@ -1,13 +1,11 @@
 package db
 
 import (
-
-	//"encoding/json"
 	"database/sql"
-	"fmt"
 
 	misc "github.com/tomk0/libs/misc"
-	_"github.com/go-sql-driver/mysql"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 // MenuItem Is an Item in from the menu
@@ -61,15 +59,15 @@ func GetAll() []MenuItem {
 
 		misc.CheckError(err)
 
-/*
-		fmt.Println("\n----------------------------------------------------------")
-		fmt.Println("ID: ", tmp.ID)
-		fmt.Println("Name: ", tmp.Name)
-		fmt.Println("Description: ", tmp.Disc)
-		fmt.Println("Price: ", tmp.Price)
-		fmt.Println("Amount: ", tmp.Amount)
-		fmt.Println("Category: ", tmp.Category)
-*/
+		/*
+			fmt.Println("\n----------------------------------------------------------")
+			fmt.Println("ID: ", tmp.ID)
+			fmt.Println("Name: ", tmp.Name)
+			fmt.Println("Description: ", tmp.Disc)
+			fmt.Println("Price: ", tmp.Price)
+			fmt.Println("Amount: ", tmp.Amount)
+			fmt.Println("Category: ", tmp.Category)
+		*/
 
 		if menu[0].ID == "" {
 
