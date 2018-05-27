@@ -18,7 +18,7 @@ func menu() string {
 
 	menu := DB.GetAll()
 	MenuOut := stuc.MenuOut{ItemsAry: menu}
-	Data := stuc.DataOut{Menu : MenuOut}
+	Data := stuc.DataOut{Used : true Menu : MenuOut}
 	
 	return misc.JSONCompile("Full_Menu", Data)
 
