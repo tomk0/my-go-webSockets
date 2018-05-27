@@ -54,10 +54,10 @@ func pong(cmd string) string {
 
 }
 
-func jsonPars(msg string) cmdIn {
+func jsonPars(msg string) stuc.CmdIn {
 
 	tmp := []byte(msg)
-	var r cmdIn
+	var r stuc.CmdIn
 
 	err := json.Unmarshal(tmp, &r)
 
