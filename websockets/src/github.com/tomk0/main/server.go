@@ -5,30 +5,29 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	misc "github.com/tomk0/libs/misc"
+
 	DB "github.com/tomk0/libs/db"
+	misc "github.com/tomk0/libs/misc"
 	"golang.org/x/net/websocket"
 )
 
 type Data struct {
-
-	SQL      string  `json:"SQL"`
+	SQL      string        `json:"SQL"`
 	ItemsAry []DB.MenuItem `json:"Items"`
-
 }
 
 type cmdIn struct {
 	Cmd  string `json:"Cmd"`
-	Data Data `json:"Data"`
+	Data Data   `json:"Data"`
 }
 
-func menu() string{
+func menu() string {
 
 	menu := DB.GetAll()
-	Data := Data{SQL: "", ItemsAry : menu}
+	Data := Data{SQL: "", ItemsAry: menu}
 	cmdOut := cmdIn{Cmd: "Test", Data: Data}
-	jsonEnc, err := json.Marshal(cmdOut) 
-	
+	jsonEnc, err := json.Marshal(cmdOut)
+
 	misc.CheckError(err)
 
 	return string(jsonEnc)
