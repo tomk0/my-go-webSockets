@@ -61,6 +61,7 @@ func GetAll() []MenuItem {
 
 		misc.CheckError(err)
 
+/*
 		fmt.Println("\n----------------------------------------------------------")
 		fmt.Println("ID: ", tmp.ID)
 		fmt.Println("Name: ", tmp.Name)
@@ -68,6 +69,7 @@ func GetAll() []MenuItem {
 		fmt.Println("Price: ", tmp.Price)
 		fmt.Println("Amount: ", tmp.Amount)
 		fmt.Println("Category: ", tmp.Category)
+*/
 
 		if menu[0].ID == "" {
 

@@ -99,7 +99,7 @@ func frmClient(ws *websocket.Conn) {
 		} else {
 
 			msg := resp
-			fmt.Println("Sending to client: " + msg)
+			//fmt.Println("Sending to client: " + msg)
 
 			if err = websocket.Message.Send(ws, msg); err != nil {
 				fmt.Println("Can't send")
