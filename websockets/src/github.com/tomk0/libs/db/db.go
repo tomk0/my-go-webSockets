@@ -2,25 +2,20 @@ package db
 
 import (
 
-
 	//"encoding/json"
-	"fmt"
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
-	misc "github.com/tomk0/libs/misc"
+	"fmt"
 
+	misc "github.com/tomk0/libs/misc"
 )
 
 type MenuItem struct {
-
-	Id string `json:"Id"`
-	Name string `json:"Name"`
-	Disc string `json:"Disc"`
-	Price float64 `json:"Price"`
-	Amount int `json:"Amount"`
-	Category string `json:"Category"`
-
-
+	ID       string  `json:"Id"`
+	Name     string  `json:"Name"`
+	Disc     string  `json:"Disc"`
+	Price    float64 `json:"Price"`
+	Amount   int     `json:"Amount"`
+	Category string  `json:"Category"`
 }
 
 /*
@@ -41,8 +36,7 @@ func Test(){
 }
 */
 
-func GetAll() []MenuItem{
-
+func GetAll() []MenuItem {
 
 	menu := make([]MenuItem, 1)
 
@@ -52,31 +46,31 @@ func GetAll() []MenuItem{
 
 	defer db.Close()
 
-	results , err := db.Query("SELECT ITM.*, CAT.CAT_TYPE FROM ITEMS AS ITM JOIN ITEM_CATEGORY AS IC ON ITM.ITM_ID = IC.IC_ITM_ID JOIN CATEGORY AS CAT ON IC.IC_CAT_ID = CAT.CAT_ID WHERE ITM.ITM_AMOUNT > 0;")
+	results, err := db.Query("SELECT ITM.*, CAT.CAT_TYPE FROM ITEMS AS ITM JOIN ITEM_CATEGORY AS IC ON ITM.ITM_ID = IC.IC_ITM_ID JOIN CATEGORY AS CAT ON IC.IC_CAT_ID = CAT.CAT_ID WHERE ITM.ITM_AMOUNT > 0;")
 
 	misc.CheckError(err)
 
-	for results.Next(){
+	for results.Next() {
 
 		var tmp MenuItem
 
-		err = results.Scan(&tmp.Id, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category )
+		err = results.Scan(&tmp.ID, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category)
 
 		misc.CheckError(err)
 
 		fmt.Println("\n----------------------------------------------------------")
-		fmt.Println("ID: ", tmp.Id)
+		fmt.Println("ID: ", tmp.ID)
 		fmt.Println("Name: ", tmp.Name)
 		fmt.Println("Description: ", tmp.Disc)
 		fmt.Println("Price: ", tmp.Price)
 		fmt.Println("Amount: ", tmp.Amount)
 		fmt.Println("Category: ", tmp.Category)
 
-		if menu[0].Id == ""{
+		if menu[0].ID == "" {
 
 			menu[0] = tmp
 
-		}else{
+		} else {
 
 			menu = append(menu, tmp)
 
@@ -84,7 +78,5 @@ func GetAll() []MenuItem{
 
 	}
 
-
 	return menu
 }
-
