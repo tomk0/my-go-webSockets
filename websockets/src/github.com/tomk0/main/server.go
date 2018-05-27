@@ -26,6 +26,8 @@ func menu() string {
 
 func route(data stuc.CmdIn) string {
 
+	Data := stuc.DataOut{Used: false}
+
 	switch data.Cmd {
 	case "ping":
 		return pong(data.Cmd)
@@ -34,7 +36,7 @@ func route(data stuc.CmdIn) string {
 	case "getMenu":
 		return menu()
 	default:
-		return "Not a Valid input"
+		return misc.JSONCompile("Not a Valid input", Data)
 
 	}
 
@@ -42,13 +44,15 @@ func route(data stuc.CmdIn) string {
 
 func pong(cmd string) string {
 
+	Data := stuc.DataOut{Used: false}
+
 	switch cmd {
 	case "ping":
-		return "pong"
+		return misc.JSONCompile("pong", Data)
 	case "Ping":
-		return "Pong"
+		return misc.JSONCompile("pong", Data)
 	default:
-		return ""
+		return misc.JSONCompile("", Data)
 
 	}
 
