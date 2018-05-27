@@ -6,19 +6,10 @@ import (
 	"database/sql"
 
 	misc "github.com/tomk0/libs/misc"
+	stuc "github.com/tomk0/libs/structs"
 
 	_ "github.com/go-sql-driver/mysql"
 )
-
-// MenuItem Is an Item in from the menu
-type MenuItem struct {
-	ID       string  `json:"Id"`
-	Name     string  `json:"Name"`
-	Disc     string  `json:"Disc"`
-	Price    float64 `json:"Price"`
-	Amount   int     `json:"Amount"`
-	Category string  `json:"Category"`
-}
 
 /*
 func Test(){
@@ -39,9 +30,9 @@ func Test(){
 */
 
 // GetAll Is the unction to Get the whole Menu
-func GetAll() []MenuItem {
+func GetAll() []stuc.MenuItem {
 
-	menu := make([]MenuItem, 1)
+	menu := make([]stuc.MenuItem, 1)
 
 	db, err := sql.Open("mysql", "tom:pwd123@tcp(127.0.0.1:3306)/cafe_POS_v3")
 
@@ -55,7 +46,7 @@ func GetAll() []MenuItem {
 
 	for results.Next() {
 
-		var tmp MenuItem
+		var tmp stuc.MenuItem
 
 		err = results.Scan(&tmp.ID, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category)
 
