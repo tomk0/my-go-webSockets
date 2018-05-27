@@ -1,6 +1,8 @@
 package db
 
 import (
+
+	"fmt"
 	"database/sql"
 
 	misc "github.com/tomk0/libs/misc"
@@ -81,5 +83,6 @@ func GetAll() []MenuItem {
 
 	}
 
+	fmt.Println("Server: Whole Menu Sent got from database")
 	return menu
 }

@@ -11,21 +11,52 @@ import (
 	"golang.org/x/net/websocket"
 )
 
-type Data struct {
-	SQL      string        `json:"SQL"`
+type MenuOut struct {
+
 	ItemsAry []DB.MenuItem `json:"Items"`
+}
+
+type DataOut struct {
+
+	Menu MenuOut `json: "Menu"`
+
+}
+
+type cmdOut struct {
+
+	Cmd string `json: "Cmd"`
+	Data DataOut `json: "Data"`
+
+}
+
+type OrderIn struct [
+
+	ITM_ID string `json: "ITM_ID"`
+	FILL_ID string `json: "FILL_ID"`
+	Amount int `json: "Amount"`
+	Price float64 `json: "Price"`
+	Notes string `json: "Notes"`
+
+]
+
+type DataIn struct {
+
+	Order []OrderIn `json: "Order"`
+
 }
 
 type cmdIn struct {
 	Cmd  string `json:"Cmd"`
-	Data Data   `json:"Data"`
+	Data DataIn   `json:"Data"`
 }
+
 
 func menu() string {
 
 	menu := DB.GetAll()
-	Data := Data{SQL: "", ItemsAry: menu}
-	cmdOut := cmdIn{Cmd: "Test", Data: Data}
+	MenuOut := MenuOut{ItemsAry: menu}
+	Data := Data{Menu : MenuOut}
+	cmdOut := cmdOut{Cmd: "Menu", Data: DataOut}
 	jsonEnc, err := json.Marshal(cmdOut)
 
 	misc.CheckError(err)
