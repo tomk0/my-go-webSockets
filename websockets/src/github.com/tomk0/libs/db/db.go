@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	misc "github.com/tomk0/libs/misc"
+	"github.com/go-sql-driver/mysql"
 )
 
 // MenuItem Is an Item in from the menu
