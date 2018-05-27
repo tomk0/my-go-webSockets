@@ -9,6 +9,7 @@ import (
 	misc "github.com/tomk0/libs/misc"
 )
 
+// MenuItem Is an Item in from the menu
 type MenuItem struct {
 	ID       string  `json:"Id"`
 	Name     string  `json:"Name"`
@@ -36,6 +37,7 @@ func Test(){
 }
 */
 
+// GetAll Is the unction to Get the whole Menu
 func GetAll() []MenuItem {
 
 	menu := make([]MenuItem, 1)
