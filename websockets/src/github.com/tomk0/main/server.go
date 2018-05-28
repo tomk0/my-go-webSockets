@@ -22,18 +22,27 @@ func menu() string {
 
 }
 
+func getAllOrders(){
+
+	Orders := DB.getAllOrders()
+	Data := stuc.DataOut{Used: true, Orders : Orders}
+
+	return misc.JSONCompile("AllOrders", Data)
+}
+
 func route(data stuc.CmdIn) string {
 
 	Data := stuc.DataOut{Used: false}
 
 	switch data.Cmd {
 	case "ping":
-		misc.PrintOutAllOrders(DB.GetAllOrders())
 		return pong(data.Cmd)
 	case "Ping":
 		return pong(data.Cmd)
 	case "getMenu":
 		return menu()
+	case "getAllOrders"
+		return getAllOrders()
 	default:
 		return misc.JSONCompile("Not a Valid input", Data)
 
