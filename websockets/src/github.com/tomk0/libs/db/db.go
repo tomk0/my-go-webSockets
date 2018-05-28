@@ -103,7 +103,7 @@ func GetAllOrders() []stuc.OrderOut {
 			fmt.Println("ID: ", tmp.ID)
 			fmt.Println("Time: ", tmp.Time)
 			fmt.Println("Total: ", tmp.Total)
-			fmt.Println("Table: ", tmp.Table)
+			fmt.Println("Table: ", tmp.Tabel)
 
 		if Orders[0].ID == "" {
 
