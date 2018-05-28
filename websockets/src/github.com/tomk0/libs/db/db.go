@@ -217,7 +217,7 @@ func GetFilling(ItemID string) []stuc.FillingOut{
 
 	defer db.Close()
 
-	err, results := db.Query("SELECT FIL.FILL_NAME, FIL.FILL_FILLING_DESC FROM FILLINGS AS FIL JOIN FILLINGS_ITEMS AS FI ON FIL.FILL_ID = FI.FI_FILL_ID WHERE FI.FI_ITM_ID = '"+ ItemID +"';")
+	results, err := db.Query("SELECT FIL.FILL_NAME, FIL.FILL_FILLING_DESC FROM FILLINGS AS FIL JOIN FILLINGS_ITEMS AS FI ON FIL.FILL_ID = FI.FI_FILL_ID WHERE FI.FI_ITM_ID = '"+ ItemID +"';")
 
 	i := 0;
 
