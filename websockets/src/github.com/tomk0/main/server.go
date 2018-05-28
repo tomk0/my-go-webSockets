@@ -39,10 +39,10 @@ func getAnOrder(OrderID string) string{
 
 }
 
-func GetFilling(ItemID string) string{
+func getFilling(ItemID string) string{
 
 	Filling := DB.GetFilling(ItemID)
-	Data := stuc.DataOut{used : true, Filling : Filling}
+	Data := stuc.DataOut{Used : true, Filling : Filling}
 
 	return misc.JSONCompile("Fillings", Data)
 }
