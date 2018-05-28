@@ -28,7 +28,7 @@ func route(data stuc.CmdIn) string {
 
 	switch data.Cmd {
 	case "ping":
-		DB.GetALLOrders()
+		DB.GetAllOrders()
 		return pong(data.Cmd)
 	case "Ping":
 		return pong(data.Cmd)
