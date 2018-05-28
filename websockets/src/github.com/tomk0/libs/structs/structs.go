@@ -1,5 +1,12 @@
 package structs
 
+type FillingOut struct {
+
+	Name string `json:"Name"`
+	Disc string `json:"Disc"`
+
+}
+
 type MenuItemOut struct {
 	ID       string  `json:"Id"`
 	Name     string  `json:"Name"`
@@ -29,10 +36,11 @@ type OrderItemOut struct {
 }
 
 type DataOut struct {
-	Used   bool       `json:"Used"`
-	Menu   MenuOut    `json:"Menu"`
-	Orders []OrderOut `json:"All_Order_Out"`
-	Order  OrderOut   `json:"Order_Out"`
+	Used    bool       `json:"Used"`
+	Menu    MenuOut    `json:"Menu"`
+	Orders  []OrderOut `json:"All_Order_Out"`
+	Order   OrderOut   `json:"Order_Out"`
+	Filling []FillingOut `json:"Filling"` 
 }
 
 type CmdOut struct {

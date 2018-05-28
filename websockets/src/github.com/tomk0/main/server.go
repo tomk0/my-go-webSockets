@@ -39,6 +39,14 @@ func getAnOrder(OrderID string) string{
 
 }
 
+func GetFilling(ItemID string) string{
+
+	Filling := DB.GetFilling(ItemID)
+	Data := stuc.DataOut{used : true, Filling : Filling}
+
+	return misc.JSONCompile("Fillings", Data)
+}
+
 func route(data stuc.CmdIn) string {
 
 	Data := stuc.DataOut{Used: false}
@@ -52,6 +60,8 @@ func route(data stuc.CmdIn) string {
 		return getAllOrders()
 	case "getAnOrder":
 		return getAnOrder(data.Data.Opt)
+	case "getFilling":
+		return getFilling(data.Data.Opt)
 	default:
 		return misc.JSONCompile("Not a Valid input", Data)
 

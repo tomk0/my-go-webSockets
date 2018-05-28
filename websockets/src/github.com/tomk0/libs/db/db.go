@@ -159,15 +159,14 @@ func GetAnOrder(OrderID string) stuc.OrderOut {
 		err = results.Scan(&tmp.ID, &tmp.Time, &tmp.Total, &tmp.Tabel)
 
 		misc.CheckError(err)
-/*
+			/*
 			fmt.Println("\n----------------------------------------------------------")
 			fmt.Println("ID: ", tmp.ID)
 			fmt.Println("Time: ", tmp.Time)
 			fmt.Println("Total: ", tmp.Total)
 			fmt.Println("Table: ", tmp.Tabel)
-*/
+			*/
 			Orders = tmp
-
 	}
 
 		tmparry := make([]stuc.OrderItemOut, 1)
@@ -184,12 +183,12 @@ func GetAnOrder(OrderID string) stuc.OrderOut {
 			var tmpItm stuc.OrderItemOut
 
 			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount)
-/*
+			/*
 			fmt.Println("\n---------------------------------------------------------- ", OrderID ," " , i)
 			fmt.Println("ID-ITM: ", tmpItm.Name)
 			fmt.Println("ID-FILL: ", tmpItm.Notes)
 			fmt.Println("Amount: ", tmpItm.Amount)
-*/
+			*/
 			if (tmparry[0].Name == ""){
 
 				tmparry[0] = tmpItm
@@ -204,7 +203,49 @@ func GetAnOrder(OrderID string) stuc.OrderOut {
 
 		Orders.Items = tmparry
 
-
 	fmt.Println("Server: ", OrderID ," Orders Sent got from database")
 	return Orders
+}
+
+func GetFilling(ItemID string) []stuc.FillingOut{
+
+	FillingAry := make([]stuc.FillingOut, 1)
+
+	db, err := sql.Open("mysql", "tom:pwd123@tcp(127.0.0.1:3306)/cafe_POS_v3")
+
+	misc.CheckError(err)
+
+	defer db.Close()
+
+	err, results = db.Query("SELECT FIL.FILL_NAME, FIL.FILL_FILLING_DESC FROM FILLINGS AS FIL JOIN FILLINGS_ITEMS AS FI ON FIL.FILL_ID = FI.FI_FILL_ID WHERE FI.FI_ITM_ID = '"+ ItemID +"';")
+
+	i := 0;
+
+	for results.Next() {
+
+		var tmp stuc.FillingOut
+
+		err = results.Scan(&tmp.Name, &tmp.Disc)
+
+		misc.CheckError(err)
+			fmt.Println("\n----------------------------------------------------------")
+			fmt.Println("Name: ", tmp.Name)
+			fmt.Println("Disc: ", tmp.Disc)
+
+			if (FillingAry[0].Name == ""){
+
+				FillingAry[0] = tmp
+
+			}else {
+
+				FillingAry = append(FillingAry, tmp)
+			}
+
+		i += i
+
+	}
+
+	return FillingAry
+
+
 }
