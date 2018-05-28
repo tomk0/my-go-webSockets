@@ -123,7 +123,7 @@ func GetAllOrders() []stuc.OrderOut {
 
 	for i, Order := range Orders{
 
-		tmp := make([]stuc.OrderItemOut, 1)
+		tmparry := make([]stuc.OrderItemOut, 1)
 
 		results, err = db.Query("SELECT ITM.ITM_NAME, OI.OI_NOTES, OI.OI_AMOUNT FROM ORDER_ITEMS AS OI JOIN ITEMS AS ITM ON OI.OI_ITM_ID = ITM.ITM_ID WHERE OI.OI_ORD_ID = '"+ Order.ID +"'")
 
@@ -131,18 +131,22 @@ func GetAllOrders() []stuc.OrderOut {
 
 		for results.Next(){
 
-			if (tmp[0].ItemID == ""){
+			var tmpItm stuc.OrderItemOut
 
-				err = results.Scan(&tmp[0].ItemID, &tmp[0].FillID, &tmp[0].Amount, &tmp[0].Notes)
+			err = results.Scan(&tmpItm.ItemID, &tmpItm.FillID, &tmpItm.Amount, &tmpItm.Notes)
+
+			if (tmparry[0].ItemID == ""){
+
+				tmparry[0] = tmpItm
 
 			}else{
 
-				tmp = append(tmp, err = results.Scan(&tmp[0].ItemID, &tmp[0].FillID, &tmp[0].Amount, &tmp[0].Notes))
+				tmparry = append(tmparry, tmpItm)
 			}
 
 		}
 
-		Orders[i].Items = tmp
+		Orders[i].Items = tmparry
 
 	}
 
