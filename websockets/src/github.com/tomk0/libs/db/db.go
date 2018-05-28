@@ -202,9 +202,9 @@ func GetAnOrders(OrderID string) stuc.OrderOut {
 			i += i
 		}
 
-		Orders[i].Items = tmparry
+		Orders.Items = tmparry
 
 
-	fmt.Println("Server: All Orders Sent got from database")
+	fmt.Println("Server: ", OrderID ," Orders Sent got from database")
 	return Orders
 }
