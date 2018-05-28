@@ -166,15 +166,7 @@ func GetAnOrders(OrderID string) stuc.OrderOut {
 			fmt.Println("Total: ", tmp.Total)
 			fmt.Println("Table: ", tmp.Tabel)
 
-		if Orders[0].ID == "" {
-
-			Orders[0] = tmp
-
-		} else {
-
-			Orders = append(Orders, tmp)
-
-		}
+			Orders = tmp
 
 	}
 
