@@ -48,7 +48,7 @@ func PrintOutAllOrders(Orders []stuc.OrderOut){
 			fmt.Println("---------------------------------------------------------------", Order.ID, " ", i)
 			fmt.Println("Name: ", Items.Name)
 			fmt.Println("Notes: ", Items.Notes)
-			fmt.Println("Amount: ", Itens.Amount)
+			fmt.Println("Amount: ", Items.Amount)
 		}
 	}
 
