@@ -22,7 +22,7 @@ func menu() string {
 
 }
 
-func getAllOrders(){
+func getAllOrders() string{
 
 	Orders := DB.GetAllOrders()
 	Data := stuc.DataOut{Used: true, Orders : Orders}
