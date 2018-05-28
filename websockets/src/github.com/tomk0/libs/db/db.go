@@ -173,17 +173,17 @@ func GetAnOrders(OrderID string) stuc.OrderOut {
 		tmparry := make([]stuc.OrderItemOut, 1)
 
 
-		results, err = db.Query("SELECT ITM.ITM_NAME, OI.OI_NOTES, OI.OI_AMOUNT FROM ORDER_ITEMS AS OI JOIN ITEMS AS ITM ON OI.OI_ITM_ID = ITM.ITM_ID WHERE OI.OI_ORD_ID = '" + Order.ID + "';")
+		results, err = db.Query("SELECT ITM.ITM_NAME, OI.OI_NOTES, OI.OI_AMOUNT FROM ORDER_ITEMS AS OI JOIN ITEMS AS ITM ON OI.OI_ITM_ID = ITM.ITM_ID WHERE OI.OI_ORD_ID = '" + OrderID + "';")
 
 		misc.CheckError(err)
 
-		for results.Next(){
+		for i, results.Next(){
 
 			var tmpItm stuc.OrderItemOut
 
 			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount)
 
-			fmt.Println("\n---------------------------------------------------------- ", Order.ID ," " , i)
+			fmt.Println("\n---------------------------------------------------------- ", OrderID ," " , i)
 			fmt.Println("ID-ITM: ", tmpItm.Name)
 			fmt.Println("ID-FILL: ", tmpItm.Notes)
 			fmt.Println("Amount: ", tmpItm.Amount)
