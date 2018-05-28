@@ -133,7 +133,7 @@ func GetAllOrders() []stuc.OrderOut {
 
 			if (tmp[0].ItemID == ""){
 
-				err.Scan(&tmp.ItemID, &tmp.FillID, &tmp.Amount, &tmp.Notes)
+				err.Scan(&tmp[0].ItemID, &tmp[0].FillID, &tmp[0].Amount, &tmp[0].Notes)
 
 			}else{
 
