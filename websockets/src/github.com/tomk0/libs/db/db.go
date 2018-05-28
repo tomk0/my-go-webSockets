@@ -177,7 +177,9 @@ func GetAnOrders(OrderID string) stuc.OrderOut {
 
 		misc.CheckError(err)
 
-		for i, results.Next(){
+		i := 0
+
+		for results.Next(){
 
 			var tmpItm stuc.OrderItemOut
 
@@ -197,6 +199,7 @@ func GetAnOrders(OrderID string) stuc.OrderOut {
 				tmparry = append(tmparry, tmpItm)
 			}
 
+			i += i
 		}
 
 		Orders[i].Items = tmparry
