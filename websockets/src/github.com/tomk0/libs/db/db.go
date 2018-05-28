@@ -121,7 +121,9 @@ func GetAllOrders() []stuc.OrderOut {
 
 		tmparry := make([]stuc.OrderItemOut, 1)
 
-		results, err = db.Query("SELECT ITM.ITM_NAME, OI.OI_NOTES, OI.OI_AMOUNT FROM ORDER_ITEMS AS OI JOIN ITEMS AS ITM ON OI.OI_ITM_ID = ITM.ITM_ID WHERE OI.OI_ORD_ID = '"+ Order.ID +"'")
+		fmt.Println(Order.ID)
+
+		results, err = db.Query("SELECT ITM.ITM_NAME, OI.OI_NOTES, OI.OI_AMOUNT FROM ORDER_ITEMS AS OI JOIN ITEMS AS ITM ON OI.OI_ITM_ID = ITM.ITM_ID WHERE OI.OI_ORD_ID = 'ORD00001';")
 
 		misc.CheckError(err)
 
