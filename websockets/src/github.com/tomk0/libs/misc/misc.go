@@ -51,6 +51,24 @@ func PrintOutAllOrders(Orders []stuc.OrderOut){
 			fmt.Println("Amount: ", Items.Amount)
 		}
 	}
+}
+
+func PrintOutAnOrder(Order stuc.OrderOut){
 
 
+	fmt.Println("###########################################################################")
+
+	fmt.Println("ID: ", Order.ID)
+	fmt.Println("Time: ", Order.Time)
+	fmt.Println("Tabel: ", Order.Tabel)
+	fmt.Println("Total: ", Order.Total)
+
+	for i, Items := range Order.Items{
+
+		fmt.Println("---------------------------------------------------------------", Order.ID, " ", i)
+		fmt.Println("Name: ", Items.Name)
+		fmt.Println("Notes: ", Items.Notes)
+		fmt.Println("Amount: ", Items.Amount)
+		
+	}
 }
