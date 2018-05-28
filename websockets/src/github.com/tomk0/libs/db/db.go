@@ -131,13 +131,12 @@ func GetAllOrders() []stuc.OrderOut {
 
 			var tmpItm stuc.OrderItemOut
 
-			err = results.Scan(&tmpItm.ItemID, &tmpItm.FillID, &tmpItm.Amount, &tmpItm.Notes)
+			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount)
 
-			fmt.Println("\n---------------------------------------------------------- ", i)
-			fmt.Println("ID-ITM: ", tmpItm.ItemID)
-			fmt.Println("ID-FILL: ", tmpItm.FillID)
+			fmt.Println("\n---------------------------------------------------------- ", Order.ID)
+			fmt.Println("ID-ITM: ", tmpItm.Name)
+			fmt.Println("ID-FILL: ", tmpItm.Notes)
 			fmt.Println("Amount: ", tmpItm.Amount)
-			fmt.Println("Notes: ", tmpItm.Notes)
 
 			if (tmparry[0].ItemID == ""){
 

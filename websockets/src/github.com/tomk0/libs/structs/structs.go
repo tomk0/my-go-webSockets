@@ -22,10 +22,9 @@ type OrderOut struct {
 }
 
 type OrderItemOut struct {
-	ItemID string `json:"ItemID"`
-	FillID string `json:"FillID"`
+	Name string `json:"ItemID"`
+	Notes string `json:"FillID"`
 	Amount int    `json:"Amount"`
-	Notes  string `json:"Notes"`
 }
 
 type DataOut struct {
