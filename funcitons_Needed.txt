@@ -1,6 +1,5 @@
 
 insert into orders
-    struct for hotdrink, sw/pan/tosti, jp, salard, kids
 
 get profits
 get total orders
