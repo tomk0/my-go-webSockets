@@ -138,7 +138,7 @@ func GetAllOrders() []stuc.OrderOut {
 	return Orders
 }
 
-func GetAnOrders(OrderID string) stuc.OrderOut {
+func GetAnOrder(OrderID string) stuc.OrderOut {
 
 	var Orders stuc.OrderOut
 
