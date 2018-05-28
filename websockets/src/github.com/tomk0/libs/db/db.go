@@ -133,16 +133,16 @@ func GetAllOrders() []stuc.OrderOut {
 
 			if (tmp[0].ItemID == ""){
 
-				err.Scan(&tmp[0].ItemID, &tmp[0].FillID, &tmp[0].Amount, &tmp[0].Notes)
+				err = results.Scan(&tmp[0].ItemID, &tmp[0].FillID, &tmp[0].Amount, &tmp[0].Notes)
 
 			}else{
 
-				tmp = append(tmp, err.Scan())
+				tmp = append(tmp, err = results.Scan(&tmp[0].ItemID, &tmp[0].FillID, &tmp[0].Amount, &tmp[0].Notes))
 			}
 
 		}
 
-		Orders[i].OrderItems = tmp
+		Orders[i].Items = tmp
 
 	}
 
