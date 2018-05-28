@@ -36,7 +36,7 @@ func route(data stuc.CmdIn) string {
 
 	switch data.Cmd {
 	case "ping":
-		misc.PrintOutAnOrder(BD.GetAnOrder("ORD00001"))
+		misc.PrintOutAnOrder(DB.GetAnOrder("ORD00001"))
 		return pong(data.Cmd)
 	case "getMenu":
 		return menu()
