@@ -29,7 +29,7 @@ func GetAllMenu() []stuc.MenuItemOut {
 
 		var tmp stuc.MenuItemOut
 
-		err = results.Scan(&tmp.ID, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category &tmp.Sub_Cat)
+		err = results.Scan(&tmp.ID, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category &tmp.Cat_Name)
 
 		misc.CheckError(err)
 
