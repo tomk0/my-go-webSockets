@@ -170,8 +170,6 @@ func GetAnOrders(OrderID string) stuc.OrderOut {
 
 	}
 
-	for i, Order := range Orders{
-
 		tmparry := make([]stuc.OrderItemOut, 1)
 
 
@@ -203,7 +201,6 @@ func GetAnOrders(OrderID string) stuc.OrderOut {
 
 		Orders[i].Items = tmparry
 
-	}
 
 	fmt.Println("Server: All Orders Sent got from database")
 	return Orders
