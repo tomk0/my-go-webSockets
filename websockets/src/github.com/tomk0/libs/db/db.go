@@ -138,9 +138,9 @@ func GetAllOrders() []stuc.OrderOut {
 	return Orders
 }
 
-func GetAnOrders(OrderID) stuc.OrderOut {
+func GetAnOrders(OrderID string) stuc.OrderOut {
 
-	Orders := make(stuc.OrderOut, 1)
+	var Orders stuc.OrderOut
 
 	db, err := sql.Open("mysql", "tom:pwd123@tcp(127.0.0.1:3306)/cafe_POS_v3")
 
