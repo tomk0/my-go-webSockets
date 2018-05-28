@@ -7,6 +7,7 @@ type MenuItemOut struct {
 	Price    float64 `json:"Price"`
 	Amount   int     `json:"Amount"`
 	Category string  `json:"Category"`
+	Sub_Name  string  `json:"Sub_Name"`
 }
 
 type MenuOut struct {

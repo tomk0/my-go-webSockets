@@ -21,7 +21,7 @@ func GetAllMenu() []stuc.MenuItemOut {
 
 	defer db.Close()
 
-	results, err := db.Query("SELECT ITM.*, CAT.CAT_TYPE FROM ITEMS AS ITM JOIN ITEM_CATEGORY AS IC ON ITM.ITM_ID = IC.IC_ITM_ID JOIN CATEGORY AS CAT ON IC.IC_CAT_ID = CAT.CAT_ID WHERE ITM.ITM_AMOUNT > 0;")
+	results, err := db.Query("SELECT ITM.*, CAT.CAT_TYPE, CAT.CAT_NAME FROM ITEMS AS ITM JOIN ITEM_CATEGORY AS IC ON ITM.ITM_ID = IC.IC_ITM_ID JOIN CATEGORY AS CAT ON IC.IC_CAT_ID = CAT.CAT_ID WHERE ITM.ITM_AMOUNT > 0;")
 
 	misc.CheckError(err)
 
@@ -29,7 +29,7 @@ func GetAllMenu() []stuc.MenuItemOut {
 
 		var tmp stuc.MenuItemOut
 
-		err = results.Scan(&tmp.ID, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category)
+		err = results.Scan(&tmp.ID, &tmp.Name, &tmp.Disc, &tmp.Price, &tmp.Amount, &tmp.Category &tmp.Sub_Cat)
 
 		misc.CheckError(err)
 
