@@ -12,15 +12,13 @@ import (
 	"golang.org/x/net/websocket"
 )
 
-
-
 func menu() string {
 
-	menu := DB.GetAll()
+	menu := DB.GetAllMenu()
 	MenuOut := stuc.MenuOut{ItemsAry: menu}
-	Data := stuc.DataOut{Used : true, Menu : MenuOut}
-	
-	return misc.JSONCompile("Full_Menu", Data)
+	Data := stuc.DataOut{Used: true, Menu: MenuOut}
+
+	return misc.JSONCompile("FullMenu", Data)
 
 }
 
