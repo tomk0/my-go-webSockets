@@ -159,13 +159,13 @@ func GetAnOrder(OrderID string) stuc.OrderOut {
 		err = results.Scan(&tmp.ID, &tmp.Time, &tmp.Total, &tmp.Tabel)
 
 		misc.CheckError(err)
-
+/*
 			fmt.Println("\n----------------------------------------------------------")
 			fmt.Println("ID: ", tmp.ID)
 			fmt.Println("Time: ", tmp.Time)
 			fmt.Println("Total: ", tmp.Total)
 			fmt.Println("Table: ", tmp.Tabel)
-
+*/
 			Orders = tmp
 
 	}
@@ -184,12 +184,12 @@ func GetAnOrder(OrderID string) stuc.OrderOut {
 			var tmpItm stuc.OrderItemOut
 
 			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount)
-
+/*
 			fmt.Println("\n---------------------------------------------------------- ", OrderID ," " , i)
 			fmt.Println("ID-ITM: ", tmpItm.Name)
 			fmt.Println("ID-FILL: ", tmpItm.Notes)
 			fmt.Println("Amount: ", tmpItm.Amount)
-
+*/
 			if (tmparry[0].Name == ""){
 
 				tmparry[0] = tmpItm

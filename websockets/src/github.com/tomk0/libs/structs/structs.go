@@ -49,6 +49,7 @@ type OrderIn struct {
 
 type DataIn struct {
 	Order []OrderIn `json:"Order"`
+	Opt string `json:"Opt"`
 }
 
 type CmdIn struct {

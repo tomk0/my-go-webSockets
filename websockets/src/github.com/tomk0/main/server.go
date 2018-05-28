@@ -30,6 +30,15 @@ func getAllOrders() string{
 	return misc.JSONCompile("AllOrders", Data)
 }
 
+func getAnOrder(OrderID String) string{
+
+	Order := DB.GetAnOrder(OrderID)
+	Data := stuc.DataOut{Used: true, Order : Order}
+
+	return misc.JSONCompile("AnOrder", Data)
+
+}
+
 func route(data stuc.CmdIn) string {
 
 	Data := stuc.DataOut{Used: false}
@@ -42,6 +51,8 @@ func route(data stuc.CmdIn) string {
 		return menu()
 	case "getAllOrders":
 		return getAllOrders()
+	case "getAnOrder":
+		return getAnOrder(data.Cmd.Data.Opt)
 	default:
 		return misc.JSONCompile("Not a Valid input", Data)
 
