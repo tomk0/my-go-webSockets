@@ -99,15 +99,11 @@ func GetAllOrders() []stuc.OrderOut {
 
 		misc.CheckError(err)
 
-		/*
 			fmt.Println("\n----------------------------------------------------------")
 			fmt.Println("ID: ", tmp.ID)
-			fmt.Println("Name: ", tmp.Name)
-			fmt.Println("Description: ", tmp.Disc)
-			fmt.Println("Price: ", tmp.Price)
-			fmt.Println("Amount: ", tmp.Amount)
-			fmt.Println("Category: ", tmp.Category)
-		*/
+			fmt.Println("Time: ", tmp.Time)
+			fmt.Println("Total: ", tmp.Total)
+			fmt.Println("Table: ", tmp.Table)
 
 		if Orders[0].ID == "" {
 
@@ -134,6 +130,12 @@ func GetAllOrders() []stuc.OrderOut {
 			var tmpItm stuc.OrderItemOut
 
 			err = results.Scan(&tmpItm.ItemID, &tmpItm.FillID, &tmpItm.Amount, &tmpItm.Notes)
+
+			fmt.Println("\n---------------------------------------------------------- ", i)
+			fmt.Println("ID-ITM: ", tmpItm.ItemID)
+			fmt.Println("ID-FILL: ", tmpItm.FillID)
+			fmt.Println("Amount: ", tmpItm.Amount)
+			fmt.Println("Notes: ", tmpItm.Notes)
 
 			if (tmparry[0].ItemID == ""){
 
