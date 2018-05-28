@@ -28,3 +28,27 @@ func JSONCompile (cmd string, Data stuc.DataOut) string {
 	return string(jsonEnc)
 
 }
+
+func PrintOutAllOrders(Orders []stuc.OrderOut){
+
+
+	for _, Order := range Orders{
+
+		fmt.Println("###########################################################################")
+
+		fmt.Println("ID: ", Order.ID)
+		fmt.Println("Time: ", Order.Time)
+		fmt.Println("Tabel: ", Order.Tabel)
+		fmt.Println("Total: ", Order.Total)
+
+		for i, Items := range Order.Items{
+
+			fmt.Println("---------------------------------------------------------------", Order.ID, " ", i)
+			fmt.Println("Name: ", Items.Name)
+			fmt.Println("Notes: ", Items.Notes)
+			fmt.Println("Amount: ", Itens.Amount)
+		}
+	}
+
+
+}
