@@ -115,25 +115,12 @@ func GetAllOrders() []stuc.OrderOut {
 			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount ,&tmpItm.Filling)
 
 			fmt.Println("\n---------------------------------------------------------- ", Order.ID ," " , i)
-			fmt.Println("ID-ITM: ", tmpItm.Name)
-			fmt.Println("ID-FILL: ", tmpItm.Notes)
+			fmt.Println("Item: ", tmpItm.Name)
+			fmt.Println("Notes: ", tmpItm.Notes)
 			fmt.Println("Amount: ", tmpItm.Amount)
 
-			if (tmpItm.Filling != ""){
+			tmpItm.Filling = getItemFilling(tmpItm.Filling)
 
-				results, err = db.Query("SELECT FILL_NAME FROM FILLINGS WHERE FILL_ID = '" + tmpItm.Filling + "';")
-
-				misc.CheckError(err)
-
-				for results.Next(){
-
-
-					err = results.Scan(&tmpItm.Filling)
-
-				}
-
-
-			}
 			fmt.Println("Filling: ", tmpItm.Filling)
 
 			if (tmparry[0].Name == ""){
@@ -154,6 +141,7 @@ func GetAllOrders() []stuc.OrderOut {
 	fmt.Println("Server: All Orders Sent got from database")
 	return Orders
 }
+
 
 func GetAnOrder(OrderID string) stuc.OrderOut {
 
@@ -189,7 +177,8 @@ func GetAnOrder(OrderID string) stuc.OrderOut {
 		tmparry := make([]stuc.OrderItemOut, 1)
 
 
-		results, err = db.Query("SELECT ITM.ITM_NAME, OI.OI_NOTES, OI.OI_AMOUNT FROM ORDER_ITEMS AS OI JOIN ITEMS AS ITM ON OI.OI_ITM_ID = ITM.ITM_ID WHERE OI.OI_ORD_ID = '" + OrderID + "';")
+
+		results, err = db.Query("SELECT ITM.ITM_NAME, OI.OI_NOTES, OI.OI_AMOUNT, OI.OI_FIL_ID FROM ORDER_ITEMS AS OI JOIN ITEMS AS ITM ON OI.OI_ITM_ID = ITM.ITM_ID WHERE OI.OI_ORD_ID = '" + OrderID + "';")
 
 		misc.CheckError(err)
 
@@ -199,13 +188,17 @@ func GetAnOrder(OrderID string) stuc.OrderOut {
 
 			var tmpItm stuc.OrderItemOut
 
-			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount)
+			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount, &tmpItm.Filling)
 			/*
 			fmt.Println("\n---------------------------------------------------------- ", OrderID ," " , i)
 			fmt.Println("ID-ITM: ", tmpItm.Name)
 			fmt.Println("ID-FILL: ", tmpItm.Notes)
 			fmt.Println("Amount: ", tmpItm.Amount)
 			*/
+
+			tmpItm.Filling = getItemFilling(tmpItm.Filling)
+
+
 			if (tmparry[0].Name == ""){
 
 				tmparry[0] = tmpItm
@@ -222,6 +215,35 @@ func GetAnOrder(OrderID string) stuc.OrderOut {
 
 	fmt.Println("Server: ", OrderID ," Orders Sent got from database")
 	return Orders
+}
+
+func getItemFilling(FillingID string) string{
+
+	var ret string
+
+	db, err := sql.Open("mysql", "tom:pwd123@tcp(127.0.0.1:3306)/cafe_POS_v3")
+
+	misc.CheckError(err)
+
+	defer db.Close()
+
+	if (tmpItm.Filling != ""){
+
+		results, err := db.Query("SELECT FILL_NAME FROM FILLINGS WHERE FILL_ID = '" + FillingID + "';")
+		misc.CheckError(err)
+	
+		for results.Next(){
+
+					err = results.Scan(&ret)
+		}
+	}else {
+
+		ret = " "
+
+	}
+
+	return ret
+
 }
 
 func GetFilling(ItemID string) []stuc.FillingOut{
@@ -263,6 +285,4 @@ func GetFilling(ItemID string) []stuc.FillingOut{
 	}
 
 	return FillingAry
-
-
 }
