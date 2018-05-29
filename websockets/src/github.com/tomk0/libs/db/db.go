@@ -227,7 +227,7 @@ func getItemFilling(FillingID string) string{
 
 	defer db.Close()
 
-	if (tmpItm.Filling != ""){
+	if (FillingID != ""){
 
 		results, err := db.Query("SELECT FILL_NAME FROM FILLINGS WHERE FILL_ID = '" + FillingID + "';")
 		misc.CheckError(err)
