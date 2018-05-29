@@ -114,6 +114,22 @@ func GetAllOrders() []stuc.OrderOut {
 
 			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount ,&tmpItm.Filling)
 
+			if (tmpItm.Filling == ""){
+
+				results, err = db.Query("SELECT FILL_NAME FROM FILLINGS WHERE FILL_ID = '" + tmpItm.Filling + "';")
+
+				misc.CheckError(err)
+
+				for results.Next(){
+
+
+					err = results.Scan(&tmpItm.Filling)
+
+				}
+
+
+			}
+
 			fmt.Println("\n---------------------------------------------------------- ", Order.ID ," " , i)
 			fmt.Println("ID-ITM: ", tmpItm.Name)
 			fmt.Println("ID-FILL: ", tmpItm.Notes)
