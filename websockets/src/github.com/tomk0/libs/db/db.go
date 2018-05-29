@@ -119,7 +119,7 @@ func GetAllOrders() []stuc.OrderOut {
 			fmt.Println("ID-FILL: ", tmpItm.Notes)
 			fmt.Println("Amount: ", tmpItm.Amount)
 
-			if (tmpItm.Filling == ""){
+			if (tmpItm.Filling == nil){
 
 
 
