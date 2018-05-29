@@ -112,7 +112,7 @@ func GetAllOrders() []stuc.OrderOut {
 
 			var tmpItm stuc.OrderItemOut
 
-			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount &tmpItm.Filling)
+			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount ,&tmpItm.Filling)
 
 			fmt.Println("\n---------------------------------------------------------- ", Order.ID ," " , i)
 			fmt.Println("ID-ITM: ", tmpItm.Name)
