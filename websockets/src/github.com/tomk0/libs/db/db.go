@@ -114,7 +114,14 @@ func GetAllOrders() []stuc.OrderOut {
 
 			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount ,&tmpItm.Filling)
 
+			fmt.Println("\n---------------------------------------------------------- ", Order.ID ," " , i)
+			fmt.Println("ID-ITM: ", tmpItm.Name)
+			fmt.Println("ID-FILL: ", tmpItm.Notes)
+			fmt.Println("Amount: ", tmpItm.Amount)
+
 			if (tmpItm.Filling == ""){
+
+
 
 				results, err = db.Query("SELECT FILL_NAME FROM FILLINGS WHERE FILL_ID = '" + tmpItm.Filling + "';")
 
@@ -129,11 +136,6 @@ func GetAllOrders() []stuc.OrderOut {
 
 
 			}
-
-			fmt.Println("\n---------------------------------------------------------- ", Order.ID ," " , i)
-			fmt.Println("ID-ITM: ", tmpItm.Name)
-			fmt.Println("ID-FILL: ", tmpItm.Notes)
-			fmt.Println("Amount: ", tmpItm.Amount)
 			fmt.Println("Filling: ", tmpItm.Filling)
 
 			if (tmparry[0].Name == ""){
