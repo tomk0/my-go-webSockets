@@ -104,7 +104,7 @@ func GetAllOrders() []stuc.OrderOut {
 		tmparry := make([]stuc.OrderItemOut, 1)
 
 
-		// LOOK AT THE SQL HERE NEED TO MAKE IT GET THE FILLING results, err = db.Query("SELECT FIL.FILL_NAME, ITM.ITM_NAME, OI.OI_NOTES, OI.OI_AMOUNT FROM ORDER_ITEMS AS OI JOIN ITEMS AS ITM ON OI.OI_ITM_ID = ITM.ITM_ID WHERE OI.OI_ORD_ID JOIN FILLINGS_ORDERS AS FO ON FO.FO_ORD_ID = OI.OI_ORD_ID JOIN FILLINGS AS FIL ON FO. = '" + Order.ID + "';")
+		results, err = db.Query("SELECT ITM.ITM_NAME, OI.OI_NOTES, OI.OI_AMOUNT, OI.OI_FIL_ID FROM ORDER_ITEMS AS OI JOIN ITEMS AS ITM ON OI.OI_ITM_ID = ITM.ITM_ID WHERE OI.OI_ORD_ID = '" + Order.ID + "';")
 
 		misc.CheckError(err)
 
@@ -112,12 +112,13 @@ func GetAllOrders() []stuc.OrderOut {
 
 			var tmpItm stuc.OrderItemOut
 
-			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount)
+			err = results.Scan(&tmpItm.Name, &tmpItm.Notes, &tmpItm.Amount &tmpItm.Filling)
 
 			fmt.Println("\n---------------------------------------------------------- ", Order.ID ," " , i)
 			fmt.Println("ID-ITM: ", tmpItm.Name)
 			fmt.Println("ID-FILL: ", tmpItm.Notes)
 			fmt.Println("Amount: ", tmpItm.Amount)
+			fmt.Println("Filling: ", tmpItm.Filling)
 
 			if (tmparry[0].Name == ""){
 

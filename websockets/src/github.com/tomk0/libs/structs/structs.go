@@ -31,7 +31,8 @@ type OrderOut struct {
 
 type OrderItemOut struct {
 	Name string `json:"ItemID"`
-	Notes string `json:"FillID"`
+	Filling string `json:"FillID"`
+	Notes string `json:"Notes"`
 	Amount int    `json:"Amount"`
 }
 
