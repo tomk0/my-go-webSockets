@@ -14,7 +14,7 @@ type MenuItemOut struct {
 	Price    float64 `json:"Price"`
 	Amount   int     `json:"Amount"`
 	Category string  `json:"Category"`
-	Cat_Name  string  `json:"Sub_Name"`
+	Cat_Name  string  `json:"Cat_Name"`
 }
 
 type MenuOut struct {
@@ -22,11 +22,11 @@ type MenuOut struct {
 }
 
 type OrderOut struct {
-	ID    string         `json:"OrderID"`
-	Time  string         `json:"OrderTime"`
-	Tabel string         `json:"OrderTabel"`
-	Total float64        `json:"OrderNumItems"`
-	Items []OrderItemOut `json:"OrderItems"`
+	ID    string         `json:"ID"`
+	Time  string         `json:"Time"`
+	Tabel string         `json:"Tabel"`
+	Total float64        `json:"Total"`
+	Items []OrderItemOut `json:"Items"`
 }
 
 type OrderItemOut struct {

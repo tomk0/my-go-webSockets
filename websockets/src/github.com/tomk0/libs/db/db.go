@@ -243,7 +243,6 @@ func getItemFilling(FillingID string) string{
 	}
 
 	return ret
-
 }
 
 func GetFilling(ItemID string) []stuc.FillingOut{
