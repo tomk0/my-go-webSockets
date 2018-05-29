@@ -119,9 +119,7 @@ func GetAllOrders() []stuc.OrderOut {
 			fmt.Println("ID-FILL: ", tmpItm.Notes)
 			fmt.Println("Amount: ", tmpItm.Amount)
 
-			if (tmpItm.Filling == nil){
-
-
+			if (tmpItm.Filling != ""){
 
 				results, err = db.Query("SELECT FILL_NAME FROM FILLINGS WHERE FILL_ID = '" + tmpItm.Filling + "';")
 
