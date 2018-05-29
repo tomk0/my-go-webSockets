@@ -1,14 +1,12 @@
 
+work on inerface for displaying products and orders etc ... etc
+
 insert into orders
 
 get profits
 get total orders
 
 inster product
-
-
-link (rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
-
 
 Json Structure
 CMD Out 
